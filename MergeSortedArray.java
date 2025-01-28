@@ -1,34 +1,36 @@
 package com.leetcode;
 
 public class MergeSortedArray {
-
-	public static void main(String[] args) {
-		int nums1[] = { 1, 2, 3, 4, 6, 8, 9 };
-		int m = nums1.length;
+	
+public static void main(String[] args) {
+		int nums1[] = { 1, 2, 3, 0, 0, 0 };
+		int m = 3;
 		int nums2[] = { 2, 5, 6 };
-		int n = nums2.length;
+		int n = 3;
 		new MergeSortedArray().merge(nums1, m, nums2, n);
 	}
 
 	public void merge(int[] nums1, int m, int[] nums2, int n) {
-		int i = 0, j = 0, k = 0;
-		int mergeArray[] = new int[m + n];
-		while (i < m && j < n) {
-			if (nums1[i] < nums2[j]) {
-				mergeArray[k++] = nums1[i++];
+		int k = 0;
+		int t = 0;
+		int temp[] = new int[m + n];
+		for (int i = 0, j = 0; i < m && j < n;) {
+			t = j;
+			if (nums1[i] < nums2[j] && i < m) {
+				temp[k++] = nums1[i++];
+			} else if (nums1[i] == nums2[j] && j < n) {
+				temp[k++] = nums1[i++];
+				temp[k++] = nums2[j++];
 			} else {
-				mergeArray[k++] = nums2[j++];
+				temp[k++] = nums2[j++];
 			}
 		}
-		while (i < m) {
-			mergeArray[k++] = nums1[i++];
+		for (int i = t; i < n; i++) {
+			temp[k++] = nums2[i];
 		}
-		while (j < n) {
-			mergeArray[k++] = nums2[j++];
-		}
-		for (int p = 0; p < mergeArray.length; p++) {
-			nums1[p] = mergeArray[p];
+		nums1 = temp.clone();
+		for (int i = 0; i < nums1.length; i++) {
+			System.out.print(nums1[i]+" ");
 		}
 	}
-
 }
