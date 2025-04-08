@@ -12,6 +12,18 @@ public class RemoveDuplicatesfromSortedArray {
 
 	}
 
+	 public int removeDuplicates(int[] nums) {
+    	     int k = 0;
+		for (int i = 1; i < nums.length; i++) {
+			if (nums[i - 1] == nums[i]) {
+				continue;
+			}
+			nums[k++] = nums[i - 1];
+		}
+		nums[k++] = nums[nums.length - 1];
+	   return k;
+        }
+
 	public int removeDuplicatesHashSet(int[] nums) {
 		Set<Integer> hs = new LinkedHashSet<Integer>();
 		for (int i = 0; i < nums.length; i++) {
@@ -24,7 +36,7 @@ public class RemoveDuplicatesfromSortedArray {
 		return hs.size();
 	}
 
-    public int removeDuplicates(int[] nums) {
+    public int removeDuplicatesOld(int[] nums) {
         int k=0;
 		int[] temp = new int[nums.length];
 		for(int i =1;i<nums.length;i++) {
