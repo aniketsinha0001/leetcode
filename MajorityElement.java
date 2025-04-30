@@ -7,8 +7,19 @@ public class MajorityElement {
 		int result = new MajorityElement().majorityElement(nums);
 		System.out.println(result);
 	}
-
 	public int majorityElement(int[] nums) {
+	   	int count = 0;
+       		Integer candidate = null;
+      		for (int num : nums) {
+           		if (count == 0) {
+               			candidate = num;
+           		}
+           		count += (num == candidate) ? 1 : -1;
+       		}
+       		return candidate;
+	}
+
+	public int majorityElementOld(int[] nums) {
 		int element = nums[0];
 		int count = 1;
 		for (int i = 1; i < nums.length; i++) {
