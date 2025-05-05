@@ -1,46 +1,27 @@
 package com.leetcode.solution;
 
+
 public class PlusOne {
 
 	public static void main(String[] args) {
-		int digits[] = { 5, 6, 2, 0, 0, 4, 6, 2, 4, 9 };
+		int digits[] = { 5, 2, 2, 6, 5, 7, 1, 9, 0, 3, 8, 6, 8, 6, 5, 2, 1, 8, 7, 9, 8, 3, 8, 4, 7, 2, 5, 8, 9 };
 		int result[] = new PlusOne().plusOne(digits);
 		for (int i = 0; i < result.length; i++) {
 			System.out.print(result[i]);
-
 		}
 	}
 
 	public int[] plusOne(int[] digits) {
-		int rem = digits[digits.length - 1] % 10;
-		boolean flag = true;
-		if (rem == 9) {
-			String s = "";
-			for (int i = 0; i < digits.length; i++) {
-				int reminder = digits[i] % 10;
-				if (reminder != 9) {
-					flag = false;
-				}
-				s = s + digits[i];
+		int n = digits.length;
+		for (int i = n - 1; i >= 0; i--) {
+			if (digits[i] < 9) {
+				digits[i]++;
+				return digits;
 			}
-			long num = Long.parseLong(s) + 1;
-			if (flag) {
-				int temp[] = new int[digits.length + 1];
-				for (int i = temp.length - 1; i >= 0; i--) {
-					temp[i] = (int) (num % 10);
-					num = num / 10;
-				}
-				return temp;
-			}
-			for (int i = digits.length - 1; i >= 0; i--) {
-				digits[i] = (int) (num % 10);
-				num = num / 10;
-			}
-
-		} else {
-			digits[digits.length - 1] = digits[digits.length - 1] + 1;
-			return digits;
+			digits[i] = 0;
 		}
-		return digits;
+		int[] array = new int[n + 1];
+		array[0] = 1;
+		return array;
 	}
 }
